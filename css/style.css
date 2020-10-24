@@ -6,7 +6,7 @@ html { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: 
 
 *, *:before, *:after {box-sizing: inherit}
 
-.sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; border: 0; padding: 0; white-space: nowrap; clip-path: inset(100%); clip: rect(0 0 0 0); overflow: hidden;}
+.sr_only { position: absolute; width: 1px; height: 1px; margin: -1px; border: 0; padding: 0; white-space: nowrap; clip-path: inset(100%); clip: rect(0 0 0 0); overflow: hidden;}
 
 /* Main Styles */
 
@@ -95,8 +95,19 @@ header {
    margin-left: 0;
 }
 
+.hamburger {
+   z-index: 100;
+   height: 30px;
+   width: 30px;
+   position: fixed;
+   right: 5%;
+   top: 20px;
+   opacity: 0;
+   cursor: pointer;
+}
+
 .fa-bars {
-   display: none;
+   visibility: hidden;
    color: #FCFCFC;
    font-size: 3rem;
    position: fixed;
@@ -122,7 +133,6 @@ span {
 }
 
 /* Suzie's Story Styling */
-
 .about,
 .pictures,
 .contact {
@@ -167,7 +177,6 @@ a.button:focus {
 }
 
 /* Picture Styling */
-
 .pictures {
    background-color: #C3D3CB;
 }
@@ -194,15 +203,17 @@ a.button:focus {
 }
 
 /* Icons Styles */
-
 .icons {
-   padding: 40px 0;
    text-align: center;
+}
+
+.icons nav {
+   padding: 40px 0;
 }
 
 .icons i {
    color: #FCFCFC;
-   font-size: 3.5rem;
+   font-size: 4rem;
    padding-bottom: 15px;
 }
 
@@ -217,7 +228,6 @@ h3 {
 }
 
 /* Blog Section */
-
 .blog {
    background-color: #FCFCFC;
 }
@@ -255,7 +265,6 @@ h3 {
 
 .image1,
 .image2 {
-   background-image: url(../assets/image-2.jpg);
    background-position: center;
    background-size: cover;
    width: 50%;
@@ -313,7 +322,7 @@ h3 {
    color: #FCFCFC;
 }
 
-input {
+input#email {
    padding: 10px 15px;
    margin: 10px 0px;
    width: 70%;
@@ -377,6 +386,12 @@ footer span {
       width: 100%;
    }
 
+   .image1,
+   .image2 {
+      height: 300px;
+      min-height: none;
+   }
+
    .bottom_read {
       text-align: center;
    }
@@ -406,11 +421,24 @@ footer span {
    }
 
    /* Contact Us Adjustments */
+   .contact {
+      padding: 40px 0;
+   }
+
    .contact .bottom_nav,
    .contact .contact_form,
    .contact .address {
       float: none;
       width: 100%;
+      padding-bottom: 40px;
+   }
+
+   .contact .address {
+      padding-bottom: 0;
+   }
+
+   .contact h4 {
+      padding-bottom: 10px;
    }
 
    .contact .bottom_nav li {
@@ -419,10 +447,14 @@ footer span {
       text-align: center;
    }
 
-   input,
+   input#email,
    button {
       display: block;
       width: 100%;
+   }
+
+   button {
+      left: 0;
    }
 
    .contact .address {
@@ -430,21 +462,40 @@ footer span {
    }
 }
 
-
 @media (max-width: 800px) {
 
-/* Heading Adjustments */
-
+   /* Heading Adjustments */
    .fa-bars {
+      visibility: visible;
+   }
+
+   .top_nav li {
       display: block;
+      margin: 20px 0;
+      padding: 10px 10px;
+      text-align: right;
+      background-color: #152D20;
+      border: 2px solid #FCFCFC;
+      border-radius: 10px;
+   }
+
+   .top_nav li a{
+      font-size: 3rem;
    }
 
    .top_nav {
+      position: fixed;
+      right: 5%;
+      top: 40px;
       display: none;
    }
 
+   input.hamburger:checked ~ .top_nav {
+      display: block;
+   }
+
    .social_nav {
-      display: none;
+      visibility: hidden;
    }
 
    h1 {
@@ -457,7 +508,7 @@ footer span {
    }
 
    header {
-      background-position: 25% 75%;
+      background-position: 30% 75%;
    }
 
    /* Gallery Adjustments */
@@ -472,58 +523,11 @@ footer span {
 
 }
 
-@media (max-width: 700px) {
-   /* Icon Adjustments */
-}
-
-
-
-/* <header id="home">
-      <div class="wrapper menu">
-         <label for="check"><i class="fa fa-bars"></i></label>
-         <input type="checkbox" id="check">
-         <nav>
-               <ul class="clearfix">
-                  <li><a href="#home">Home</a></li>
-                  <li><a href="#vision">Vision</a></li>
-                  <li><a href="#testimonials">Testimonials</a></li>
-                  <li><a href="#contact">Contact Us</a></li>
-               </ul>
-         </nav>
-         <h1>Furnished <span>Lands</span></h1>
-      </div>
-   </header> */
-
-   /* @media (max-width: 740px) {
-   /* make title smaller */
-      /* h1 {
-      font-size: 1.8rem;
-   }
-   /* remove nav bar */
-      /* header nav {
-      display: none;
-      transition: all 0.4s ease-out;
-   } */ 
-   /* show hamburg icon */
-   /* .fa-bars {
-      visibility: visible;
-   }
-   input:checked + nav {
+@media (max-width: 650px) {
+   /* Icons Adjustment */
+   .icons li {
       display: block;
+      width: 100%;
+      padding: 30px;
    }
-   input {
-      position: absolute;
-      left: -1000px;
-   }
-   nav ul li {
-      float: left;
-      clear:both;
-   }
-   header nav {
-      position: absolute;
-      top: 60px;
-      right: 0;
-      background-color: beige;
-      padding: 20px;
-   }
-} */
+}
